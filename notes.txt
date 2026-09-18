@@ -1,0 +1,32 @@
+Langgraph - why??
+
+custom orchestration issue
+1. Not scalable - if multiple cases are there then we need to use alot of if else not good
+2. Not easy to debug
+3. Not maintainable - alot of code.
+
+
+future goal
+
+Portfolio Analytics
+
+NL2SQL
+
+Portfolio Recommendations
+
+Tax Analysis
+
+Goal Planning
+
+Document Analysis
+
+Market Research
+
+Portfolio Rebalancing
+
+Mutual Fund Analyzer
+
+News Impact Analyzer
+
+
+tree /F  -- to create tree folder

@@ -1,3 +1,4 @@
+import sqlite3
 import pandas as pd
 
 
@@ -8,29 +9,12 @@ class ExcelService:
         self.file_path = file_path
 
     def load_holdings(self):
-
-        raw_df = pd.read_excel(
-            self.file_path,
-            sheet_name="Portfolio",
-            header=None
-        )
-
-        header_row = raw_df[
-            raw_df.iloc[:, 0] == "Scrip/Contract"
-        ].index[0]
-
-        holdings_df = pd.read_excel(
-            self.file_path,
-            sheet_name="Portfolio",
-            header=header_row
-        )
-
-        holdings_df = holdings_df.dropna(
-            subset=["Scrip/Contract"]
-        )
-
+        raw_df = pd.read_excel( self.file_path, sheet_name="Portfolio", header=None ) 
+        header_row = raw_df[ raw_df.iloc[:, 0] == "Scrip/Contract" ].index[0]
+        holdings_df = pd.read_excel( self.file_path, sheet_name="Portfolio", header=header_row )
+        holdings_df = holdings_df.dropna( subset=["Scrip/Contract"] )
         return holdings_df
-    
+
     def save_to_database(self, holdings_df, conn):
 
         required_columns = {
@@ -62,3 +46,25 @@ class ExcelService:
         print(
             f"{len(db_df)} holdings inserted"
         )
+
+    def ingest_to_sqlite(
+        self,
+        db_path
+    ):
+
+        conn = sqlite3.connect(db_path)
+
+        holdings_df = self.load_holdings()
+
+        self.save_to_database(
+            holdings_df,
+            conn
+        )
+
+        conn.close()
+
+        return {
+            "status": "success",
+            "records_loaded":
+                len(holdings_df)
+        }

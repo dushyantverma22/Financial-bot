@@ -1,9 +1,9 @@
 from langchain_openai import ChatOpenAI
-from config.settings import OPENAI_API_KEY
+from backened.config.settings import OPENAI_API_KEY
 
 
 
-from prompt.sql_prompt import (
+from backened.prompt.sql_prompt import (
     SQL_SYSTEM_PROMPT
 )
 

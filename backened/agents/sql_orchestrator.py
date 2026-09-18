@@ -1,9 +1,9 @@
-from agents.sql_generator import SQLGenerator
-from agents.intent_classifier import IntentClassifier
+from backened.agents.sql_generator import SQLGenerator
+from backened.agents.intent_classifier import IntentClassifier
 
-from validators.sql_validator import SQLValidator
+from backened.validators.sql_validator import SQLValidator
 
-from services.query_service import QueryService
+from backened.services.query_service import QueryService
 
 
 class SQLOrchestrator:
